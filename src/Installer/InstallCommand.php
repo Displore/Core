@@ -32,6 +32,7 @@ class InstallCommand extends Command
 
     /**
      * Create a new InstallCommand instance.
+     *
      * @param \Illuminate\Support\Composer $composer
      */
     public function __construct(Composer $composer)
@@ -58,8 +59,7 @@ class InstallCommand extends Command
     /**
      * Install a single Displore package.
      * 
-     * @param  string $package
-     * @return void
+     * @param string $package
      */
     public function installSinglePackage($package)
     {
@@ -103,8 +103,7 @@ class InstallCommand extends Command
      * Install one or more packages, based on a JSON config file.
      * The config file is searched for starting on the base_path().
      *
-     * @param  string $file
-     * @return void
+     * @param string $file
      */
     public function InstallFromConfig($file)
     {
@@ -117,7 +116,7 @@ class InstallCommand extends Command
         $path = realpath(base_path($file));
 
         // If there is no such file, abort the mission.
-        if ( ! file_exists($path)) {
+        if (!file_exists($path)) {
             $this->error('There is no configuration found!');
             $this->info('I looked for it in '.base_path().'/'.$file);
             $this->info('Please try again.');
@@ -153,8 +152,7 @@ class InstallCommand extends Command
      * Setting all of the Laravel logic, such as adding the service provider
      * and Facade to the `config/app.php` arrays.
      * 
-     * @param  array $package
-     * @return void
+     * @param array $package
      */
     protected function setLaravelLogic($package)
     {
@@ -162,7 +160,7 @@ class InstallCommand extends Command
         $path = base_path('vendor/'.$package['requirement']);
 
         // Look for a configuration file.
-        if ( ! file_exists($path.'/displore.json')) {
+        if (!file_exists($path.'/displore.json')) {
             $this->error('There is no displore.json found!');
             $this->info('I looked for it in '.$path);
             $this->info('You should add the Laravel logic (service provider, facade) yourself (sorry!)');
@@ -170,7 +168,7 @@ class InstallCommand extends Command
         }
 
         // There should be a `provides` array.
-        if ( ! isset($package['provides'])) {
+        if (!isset($package['provides'])) {
             $this->error('There are no provides defined.');
             $this->info('No service provider or facade will be added.');
 

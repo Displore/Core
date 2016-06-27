@@ -8,8 +8,6 @@ class CoreServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -17,28 +15,12 @@ class CoreServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/core.php' => config_path('displore/core.php'),
         ], 'displore.core.config');
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/core.php', 'displore.core'
-        );
 
-        // The basic menu implementation configuration.
-        $this->publishes([
-            __DIR__.'/../config/menu.php' => config_path('displore/menu.php'),
-        ], 'displore.core.menu');
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/menu.php', 'displore.menu'
-        );
-
-        // Migrations for tags.
-        $this->publishes([
-            __DIR__.'/../database/migrations/' => database_path('migrations'),
-        ], 'displore.core.migrations');
+        $this->mergeConfigFrom(__DIR__.'/../config/core.php', 'displore.core');
     }
 
     /**
      * Register any package services.
-     *
-     * @return void
      */
     public function register()
     {
@@ -51,17 +33,8 @@ class CoreServiceProvider extends ServiceProvider
             return $this->app->make('Displore\Core\Notifications\Notifier');
         });
 
-        $this->app->singleton('tagger', function () {
-            return $this->app->make('Displore\Core\Tags\Tagger');
-        });
-
         $this->app->singleton('logbook', function () {
             return $this->app->make('Displore\Core\Logging\Logbook');
-        });
-
-        $this->app->bind('Displore\Core\Contracts\MenuBuilder', 'Displore\Core\Menu\Builder');
-        $this->app->bind('menu', function () {
-            return $this->app->make('Displore\Core\Contracts\MenuBuilder');
         });
     }
 }

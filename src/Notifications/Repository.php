@@ -9,8 +9,9 @@ class Repository
     /**
      * Get all notifications for a given type and id.
      * 
-     * @param  string                                            $type
-     * @param  int                                               $id
+     * @param string $type
+     * @param int    $id
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function allFor($type, $id)
@@ -21,7 +22,8 @@ class Repository
     /**
      * Shortcut to get all notifications for a user.
      * 
-     * @param  int                                               $userId
+     * @param int $userId
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function allForUser($userId)
@@ -32,8 +34,9 @@ class Repository
     /**
      * Get all unread notifications for a given type and id.
      * 
-     * @param  string                                            $type
-     * @param  int                                               $id
+     * @param string $type
+     * @param int    $id
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function allUnreadFor($type, $id)
@@ -44,7 +47,8 @@ class Repository
     /**
      * Shortcut to get all unread notifications for a given user.
      * 
-     * @param  int                                               $userId
+     * @param int $userId
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function allUnreadForUser($userId)
@@ -55,9 +59,10 @@ class Repository
     /**
      * Get all unread notifications for a given type and id since a given time.
      * 
-     * @param  \DateTime                                         $timestamp
-     * @param  string                                            $type
-     * @param  int                                               $id
+     * @param \DateTime $timestamp
+     * @param string    $type
+     * @param int       $id
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function allUnreadSince($timestamp, $type, $id)
@@ -72,8 +77,9 @@ class Repository
     /**
      * Get al read notifications for a given type and id.
      * 
-     * @param  string                                            $type
-     * @param  int                                               $id
+     * @param string $type
+     * @param int    $id
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function allReadFor($type, $id)
@@ -84,7 +90,8 @@ class Repository
     /**
      * Shortcut to get all read notifications for a given user.
      * 
-     * @param  int                                               $userId
+     * @param int $userId
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function allReadForUser($userId)
@@ -95,7 +102,8 @@ class Repository
     /**
      * Mark a given notification as read.
      * 
-     * @param  int      $notificationId
+     * @param int $notificationId
+     *
      * @return bool|int
      */
     public function markAsRead($notificationId)
@@ -106,7 +114,8 @@ class Repository
     /**
      * Mark a given notification as unread.
      * 
-     * @param  int      $notificationId
+     * @param int $notificationId
+     *
      * @return bool|int
      */
     public function markAsUnread($notificationId)
@@ -117,8 +126,9 @@ class Repository
     /**
      * Mark all as read for a given type and id.
      * 
-     * @param  string   $type
-     * @param  int      $id
+     * @param string $type
+     * @param int    $id
+     *
      * @return bool|int
      */
     public function markAllAsReadFor($type, $id)
@@ -130,8 +140,9 @@ class Repository
      * Flush all notifications older than a given timestamp.
      * Optional flag decides if only read messages are deleted, defaults to true.
      * 
-     * @param  \DateTime $timestamp
-     * @param  bool      $read
+     * @param \DateTime $timestamp
+     * @param bool      $read
+     *
      * @return bool|null
      */
     public function flushOlderThan($timestamp, $read = true)
@@ -145,9 +156,10 @@ class Repository
      * Flush all notifications for a given type and id.
      * Optional flag decides if only read messages are deleted, defaults to true.
      * 
-     * @param  string    $type
-     * @param  int       $id
-     * @param  bool      $read
+     * @param string $type
+     * @param int    $id
+     * @param bool   $read
+     *
      * @return bool|null
      */
     public function flushAllFor($type, $id, $read = true)
@@ -159,8 +171,9 @@ class Repository
      * Shortcut to flush all notifications for a given user.
      * Optional flag decides if only read messages are deleted, defaults to true.
      * 
-     * @param  int       $userId
-     * @param  bool      $read
+     * @param int  $userId
+     * @param bool $read
+     *
      * @return bool|null
      */
     public function flushAllForUser($userId, $read = true)
@@ -171,9 +184,10 @@ class Repository
     /**
      * Flush all notifications for a given type and id  that are read and older.
      * 
-     * @param  \DateTime $timestamp
-     * @param  string    $type
-     * @param  int       $id
+     * @param \DateTime $timestamp
+     * @param string    $type
+     * @param int       $id
+     *
      * @return bool|null
      */
     public function flushOldAndReadFor($timestamp, $type, $id)
@@ -192,6 +206,6 @@ class Repository
      */
     public function eloquent()
     {
-        return new Notification;
+        return new Notification();
     }
 }

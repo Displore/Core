@@ -8,6 +8,7 @@ class Composer extends IlluminateComposer
 {
     /**
      * Container of possible errors that rose during the process.
+     *
      * @var string
      */
     public $composerErrors;
@@ -15,8 +16,7 @@ class Composer extends IlluminateComposer
     /**
      * Execute a composer command.
      * 
-     * @param  string $command
-     * @return void
+     * @param string $command
      */
     public function executeCommand($command)
     {
@@ -32,8 +32,7 @@ class Composer extends IlluminateComposer
     /**
      * Execute `composer require` with the dependency.
      * 
-     * @param  string $dependency
-     * @return void
+     * @param string $dependency
      */
     public function requireDependency($dependency)
     {
@@ -43,8 +42,7 @@ class Composer extends IlluminateComposer
     /**
      * Execute `composer require --dev` with the dependency.
      * 
-     * @param  string $devDependency
-     * @return void
+     * @param string $devDependency
      */
     public function requireDevDependency($devDependency)
     {

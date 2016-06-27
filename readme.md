@@ -3,7 +3,7 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
-This is the core package of Displore, it helps you with installing any other (Displore) packages. It also comes with a general notifications, tags and logbook system.
+This is the core package of Displore, it helps you with installing any other (Displore) packages. It also comes with a general notifications and logbook system.
 
 ## Install
 
@@ -19,11 +19,6 @@ Afterwards, add the service provider and dump Composer's autoloads.
 
 ```bash
 $ php artisan vendor:publish --tag=displore.core.config
-```
-
-If you use the tags functionality, you'll need the migrations.
-```bash
-$ php artisan vendor:publish --tag=displore.core.migrations
 ```
 
 ## Usage
@@ -58,27 +53,6 @@ Notifier::get()->markAsRead($nId);
 Notifier::flushOldAndReadFor($timestamp, 'user', Auth::user());
 ```
 
-### Tags
-
-Tags can be added to every model. They optionally have a description and a category. The Tagger class is resolved by Laravel.
-In order to make it work, your model(s) should use the trait `Displore\Core\Tags\Taggable`.
-Some examples:
-```php
-$task = Task::find(1);
-Tagger::tag($task, 'Important');
-// or...
-$task->tag('Important');
-Tagger::create('Important', 'Optional category', 'optional description');
-Tagger::tagOrCreate($task, 'Very Important');
-Tagger::untag($task, 'Important');
-// or...
-$task->untag('Important');
-Tagger::syncTags($task, ['Important', 'Very Important']);
-// or...
-$task->syncTags(['Important', 'Very Important']);
-$tagsForTask = $task->tags;
-```
-
 ### Logbook
 
 To get a simple overview of the contents of you logs, you can use the Logbook class to retrieve and parse all .log files.
@@ -87,14 +61,6 @@ The Biotope backend package has an example implementation of this functionality.
 $files = Logbook::getLogFiles(storage_path('logs'));
 $logs = Logbook::compile($files);
 $JsonLogs = Logbook::compile($files)->toJson();
-```
-
-### Menus
-This package comes with a very basic implementation of a menu builder. By binding the `Displore\Core\Contracts\MenuBuilder` interface to another class you can easily swap it, for example with the excellent menu package created by [Spatie](https://github.com/spatie/laravel-menu).
-Run `vendor:publish --tag=displore.core.menu` to publish the config file in which you can set the different menus. You can for example pass them along with your views in a controller:
-```php
-$menu = Menu::from(Config::get('displore.menu'))->build('main');
-return view('index')->with($menu);
 ```
 
 ## Further documentation
@@ -110,7 +76,7 @@ Please see [changelog](changelog.md) for more information what has changed recen
 In a Laravel application, with [Laravel Packager](https://github.com/Jeroen-G/laravel-packager):
 ``` bash
 $ php artisan packager:git *Displore Github url*
-$ php artisan packager:tests
+$ php artisan packager:tests Displore Core
 $ phpunit
 ```
 

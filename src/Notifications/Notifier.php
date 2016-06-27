@@ -34,10 +34,11 @@ class Notifier
     /**
      * Create a new notification, defaults to type user and an unread status.
      * 
-     * @param  string $message
-     * @param  int    $id
-     * @param  string $type
-     * @param  bool   $read
+     * @param string $message
+     * @param int    $id
+     * @param string $type
+     * @param bool   $read
+     *
      * @return static
      */
     public function notify($message, $id, $type = 'user', $read = false)
@@ -54,9 +55,8 @@ class Notifier
      * Flash a notification to the session storage.
      * These can be used in the views as the $notification variable.
      * 
-     * @param  string $message
-     * @param  mixed  $metadata
-     * @return void
+     * @param string $message
+     * @param mixed  $metadata
      */
     public function flash($message, $metadata = null)
     {
@@ -69,12 +69,10 @@ class Notifier
 
     /**
      * Get access to the repository to interact with existing notifications.
-     * 
-     * @return void
      */
     public function get()
     {
-        if ( ! isset($this->repository)) {
+        if (!isset($this->repository)) {
             $this->repository = new Repository();
         }
 

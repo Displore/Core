@@ -37,7 +37,8 @@ class Logbook
     /**
      * Get an array of all of the log files.
      * 
-     * @param  string $path
+     * @param string $path
+     *
      * @return array
      */
     public function getLogFiles($path)
@@ -58,7 +59,8 @@ class Logbook
     /**
      * Compile an array of log files into a collection.
      * 
-     * @param  array                          $logFiles
+     * @param array $logFiles
+     *
      * @return \Illuminate\Support\Collection
      */
     public function compile($logFiles)
@@ -73,7 +75,8 @@ class Logbook
     /**
      * Create a collection from an array and transform the log headers.
      * 
-     * @param  array                          $compiledLogs
+     * @param array $compiledLogs
+     *
      * @return \Illuminate\Support\Collection
      */
     public function collectAndTransform($compiledLogs)
