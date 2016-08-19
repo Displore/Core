@@ -25,7 +25,7 @@ class InstallCommand extends Command
 
     /**
      * The composer instance.
-     * 
+     *
      * @var \Illuminate\Support\Composer
      */
     protected $composer;
@@ -58,7 +58,7 @@ class InstallCommand extends Command
 
     /**
      * Install a single Displore package.
-     * 
+     *
      * @param string $package
      */
     public function installSinglePackage($package)
@@ -116,7 +116,7 @@ class InstallCommand extends Command
         $path = realpath(base_path($file));
 
         // If there is no such file, abort the mission.
-        if (!file_exists($path)) {
+        if ( ! file_exists($path)) {
             $this->error('There is no configuration found!');
             $this->info('I looked for it in '.base_path().'/'.$file);
             $this->info('Please try again.');
@@ -151,7 +151,7 @@ class InstallCommand extends Command
     /**
      * Setting all of the Laravel logic, such as adding the service provider
      * and Facade to the `config/app.php` arrays.
-     * 
+     *
      * @param array $package
      */
     protected function setLaravelLogic($package)
@@ -160,7 +160,7 @@ class InstallCommand extends Command
         $path = base_path('vendor/'.$package['requirement']);
 
         // Look for a configuration file.
-        if (!file_exists($path.'/displore.json')) {
+        if ( ! file_exists($path.'/displore.json')) {
             $this->error('There is no displore.json found!');
             $this->info('I looked for it in '.$path);
             $this->info('You should add the Laravel logic (service provider, facade) yourself (sorry!)');
@@ -168,7 +168,7 @@ class InstallCommand extends Command
         }
 
         // There should be a `provides` array.
-        if (!isset($package['provides'])) {
+        if ( ! isset($package['provides'])) {
             $this->error('There are no provides defined.');
             $this->info('No service provider or facade will be added.');
 

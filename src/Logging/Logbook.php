@@ -6,7 +6,7 @@ class Logbook
 {
     /**
      * Monolog levels.
-     * 
+     *
      * @var array
      */
     public $levels = [
@@ -22,21 +22,21 @@ class Logbook
 
     /**
      * Preg_match_all() header pattern.
-     * 
+     *
      * @var string
      */
     public $patternAll = "/\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\].*/";
 
     /**
      * Preg_match() datetime pattern.
-     * 
+     *
      * @var string
      */
     public $patternSingle = "/\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\]/";
 
     /**
      * Get an array of all of the log files.
-     * 
+     *
      * @param string $path
      *
      * @return array
@@ -58,7 +58,7 @@ class Logbook
 
     /**
      * Compile an array of log files into a collection.
-     * 
+     *
      * @param array $logFiles
      *
      * @return \Illuminate\Support\Collection
@@ -74,7 +74,7 @@ class Logbook
 
     /**
      * Create a collection from an array and transform the log headers.
-     * 
+     *
      * @param array $compiledLogs
      *
      * @return \Illuminate\Support\Collection
@@ -84,7 +84,6 @@ class Logbook
         $collection = collect($compiledLogs);
 
         $collection->transform(function ($item, $key) {
-
             $old = $item;
 
             preg_match($this->patternSingle, $old, $output);
