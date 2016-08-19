@@ -29,10 +29,6 @@ class CoreServiceProvider extends ServiceProvider
             $this->app->register('Displore\Core\Installer\InstallerServiceProvider');
         }
 
-        $this->app->singleton('notifier', function () {
-            return $this->app->make('Displore\Core\Notifications\Notifier');
-        });
-
         $this->app->singleton('logbook', function () {
             return $this->app->make('Displore\Core\Logging\Logbook');
         });
